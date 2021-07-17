@@ -1,2 +1,2 @@
-# flutter_animations
+# Flutter animations
 Repository used for my studies in flutter animations
