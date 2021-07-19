@@ -1,8 +1,11 @@
+import 'package:animated_container_animations/pages/align_example.dart';
 import 'package:animated_container_animations/pages/container_example.dart';
 import 'package:animated_container_animations/pages/crossfade_example.dart';
 import 'package:animated_container_animations/pages/demo_page.dart';
 import 'package:animated_container_animations/pages/opacity_example.dart';
+import 'package:animated_container_animations/pages/padding_example.dart';
 import 'package:animated_container_animations/pages/physical_model_example.dart';
+import 'package:animated_container_animations/pages/text_style_example.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -47,10 +50,13 @@ class _MyHomePageState extends State<MyHomePage> {
         body: PageView(
           scrollDirection: Axis.horizontal,
           children: [
-            DemoPage(title: 'Container', child: ContainerExample(),),
+            DemoPage(title: 'Container', child: ContainerExample()),
             DemoPage(title: 'Cross Fade animation', child: CrossFadeExample()),
             DemoPage(title: 'Physical Model animation', child: PhysicalModelExample()),
             DemoPage(title: 'Opacity animation', child: OpacityExample()),
+            DemoPage(title: 'Default Text Style animation', child: DefaultTextStyleExample()),
+            DemoPage(title: 'Align animation', child: AlignExample()),
+            DemoPage(title: 'Align animation', child: PaddingExample()),
           ],
         )
       ),
