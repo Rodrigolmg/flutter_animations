@@ -13,8 +13,14 @@ class _AnimationControllerExampleState extends State<AnimationControllerExample>
   late AnimationController _controller;
   late String _statusDescription;
 
-  double _width = .0;
-  double _height = .0;
+  final Animatable<double> _widthTween = Tween<double>(begin: .0, end: 350.0)
+      .chain(CurveTween(curve: Curves.bounceOut));
+  final Animatable<double> _heightTween = Tween<double>(begin: .0, end: 350.0)
+      .chain(CurveTween(curve: Curves.bounceOut));
+  final ColorTween _colorTween = ColorTween(
+      begin: Colors.redAccent,
+      end: Colors.pinkAccent
+  );
 
   @override
   void initState() {
@@ -23,7 +29,7 @@ class _AnimationControllerExampleState extends State<AnimationControllerExample>
       duration: const Duration(milliseconds: 850),
     );
     _controller.addListener(() {
-      _setValues(_controller.value);
+      _updateState();
     });
     _controller.addStatusListener(_animationStatus);
     _controller.repeat(reverse: true);
@@ -36,10 +42,8 @@ class _AnimationControllerExampleState extends State<AnimationControllerExample>
     super.dispose();
   }
 
-  void _setValues(double value){
+  void _updateState(){
     setState(() {
-      _width = value * 350;
-      _height = value * 350;
     });
   }
 
@@ -66,11 +70,11 @@ class _AnimationControllerExampleState extends State<AnimationControllerExample>
         ),
         body: Center(
           child: Container(
-            decoration: const BoxDecoration(
-              color: Colors.redAccent
+            decoration: BoxDecoration(
+              color: _colorTween.evaluate(_controller)
             ),
-            width: _width,
-            height: _height,
+            width: _widthTween.evaluate(_controller),
+            height: _heightTween.evaluate(_controller),
           ),
         ),
       ),
